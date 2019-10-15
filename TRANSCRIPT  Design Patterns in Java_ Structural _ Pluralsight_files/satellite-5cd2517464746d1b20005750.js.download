@@ -1,0 +1,44 @@
+_satellite.pushAsyncScript(function(event, target, $variables){
+  function triggerAdobeEvent(event,details){
+    var newEvent = new CustomEvent( event, { bubbles: true, cancelable: false, detail: details});
+    document.querySelector('body').dispatchEvent(newEvent);
+}
+
+if (document.URL.indexOf("ps_debug") > -1){
+_satellite.removeCookie('experimentCookie');
+}
+
+var experimentName = event.detail.experiment_name;
+var experimentVariation = event.detail.experiment_variation;
+var eventContext = event.detail.context;
+var experimentName_Variation = experimentName + "|" + experimentVariation;
+var experimentUserHandle = event.detail.userHandle;
+
+//_satellite.setCookie('experimentCookie','testingcookievalue',1);
+var satelliteCookie = _satellite.readCookie('experimentCookie');
+
+if (satelliteCookie == null){
+// Set Cookie
+_satellite.setCookie('experimentCookie',experimentName_Variation,0.0416);
+// Fire Event
+triggerAdobeEvent('adobeTrackExperiment',{
+    experimentName: experimentName,
+    experimentVariation: experimentVariation,
+    context: eventContext,
+    experimentUserHandle: experimentUserHandle
+});
+} else if (satelliteCookie.includes(experimentName_Variation)) {
+// console.log('You are in the ' + experimentName_Variation + ' test, bro!');
+} else {
+// Concat Cookie
+var concatExperimnentCookie = _satellite.readCookie('experimentCookie') + "," + experimentName_Variation;
+_satellite.setCookie('experimentCookie',concatExperimnentCookie,0.0416);
+// Fire Event
+triggerAdobeEvent('adobeTrackExperiment',{
+    experimentName: experimentName,
+    experimentVariation: experimentVariation,
+    context: eventContext,
+    experimentUserHandle: experimentUserHandle
+});
+}
+});
