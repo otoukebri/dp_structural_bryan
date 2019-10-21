@@ -1,24 +1,14 @@
 
-import java.util.HashMap;
-import java.util.Map;
+public class Test{
 
-public class Test {
-
-	public static void main(String args []) {
-		Map<String, String> personAttributes = new HashMap<>();
-		
-		personAttributes.put("site_role", "person");
-		personAttributes.put("access_role", "limited");
-		
-		Map<String, String> groupAttributes = new HashMap<>();
-		
-		groupAttributes.put("group_role", "claims");
-		
-		Map<String, String> secAttributes = new HashMap<>();
-		
-		secAttributes.putAll(personAttributes);
-		secAttributes.putAll(groupAttributes);
-		
-		System.out.println(secAttributes);
+	public static void main(String[] args) {
+		Menu mainMenu = new Menu("Main", "/main");
+		MenuItem safetyMenuItem = new MenuItem("Safety", "/safety");
+		mainMenu.add(safetyMenuItem);
+		Menu claimsSubMenu = new Menu("Claims", "/claims");
+		mainMenu.add(claimsSubMenu);
+		MenuItem personalClaimsMenu = new MenuItem("Personal Claim", "/personalClaims");
+		claimsSubMenu.add(personalClaimsMenu);
+		System.out.println(mainMenu.toString());
 	}
 }
