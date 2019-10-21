@@ -9,8 +9,10 @@ public class Test{
 		mainMenu.add(safetyMenuItem);
 		Menu claimsSubMenu = new Menu("Claims", "/claims");
 		mainMenu.add(claimsSubMenu);
-		MenuItem personalClaimsMenu = new MenuItem("Personal Claim", "/personalClaims");
-		claimsSubMenu.add(personalClaimsMenu);
+		MenuItem personalClaimsMenu1 = new MenuItem("Personal Claim", "/personalClaims");
+		claimsSubMenu.add(personalClaimsMenu1);
+	        MenuItem personalClaimsMenu2 = new MenuItem("Personal Claim", "/personalClaims");
+	        claimsSubMenu.add(personalClaimsMenu2);
 		System.out.println(mainMenu.toString());
 	}
 }
