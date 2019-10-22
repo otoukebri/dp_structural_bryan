@@ -2,19 +2,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class MenuComponent {
+class Test {
 	
 	String name;
 	String url;
-	List<MenuComponent> menuComponents = new ArrayList<>();
-	
-	public MenuComponent add(MenuComponent menuComponent) {
-		throw new UnsupportedOperationException("Feature not implemented at this level");
-	}
-
-	public MenuComponent remove(MenuComponent menuComponent) {
-		throw new UnsupportedOperationException("Feature not implemented at this level");
-	}
+	List<String> li = new ArrayList<>();
+	li.add("sam");li.add("ryio");li.add("caro");
 	
 	public String getName() {
 		return name;
